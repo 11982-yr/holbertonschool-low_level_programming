@@ -6,7 +6,7 @@
  * Return: Always 0.
  */
 
-int main (void)
+int main(void)
 {
 	long prime = 612852475143, div;
 

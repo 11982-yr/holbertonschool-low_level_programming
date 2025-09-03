@@ -1,15 +1,13 @@
 #include "main.h"
 
 /**
- * infinte_add - adds two numbers.
- *
+ * infinite_add - adds two numbers represented as strings.
  * @n1: the first number to be added.
  * @n2: the second number to be added.
  * @r: the buffer that will be used to store the result.
  * @size_r: the buffer size.
  *
- * Return: if r can store the num - positive result.
- * if r cannot store the num - 0.
+ * Return: if r can store the num - positive result, if r cannot store the num - 0.
  */
 
 char *infinite_add(char *n1, char *n2, char *r, int size_r)

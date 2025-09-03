@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * infintie_add - adds two numbers.
+ * infinte_add - adds two numbers.
  *
  * @n1: the first number to be added.
  * @n2: the second number to be added.
@@ -27,7 +27,8 @@ char *infinite_add(char *n1, char *n2, char *r, int size_r)
 	r[size_r - 1] = '\0';
 	k = size_r - 2;
 
-	i--; j--;
+	i--;
+	j--;
 	while (i >= 0 || j >= 0 || carry)
 	{
 		sum = carry;

@@ -13,7 +13,7 @@ int main(void)
 	char *f = "world";
 	char *t;
 
-	t = _strbrk(s, f);
+	t = _strpbrk(s, f);
 	printf("%s\n", t);
 	return (0);
 }

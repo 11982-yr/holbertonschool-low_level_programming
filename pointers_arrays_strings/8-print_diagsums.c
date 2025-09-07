@@ -4,8 +4,8 @@
 /**
  * print_diagsums - prints the sum of two diagonals.
  *
- * @a:the 
- * @size:
+ * @a:the arrays to be checked.
+ * @size: the size of the matrix.
  */
 
 void print_diagsums(int *a, int size)

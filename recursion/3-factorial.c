@@ -20,6 +20,6 @@ int factorial(int n)
 		(n >= 0 && n <= 1)
 			return (1);
 
-	result *= factorial (n - 1);
+	result *= factorial(n - 1);
 	return (result);
 }

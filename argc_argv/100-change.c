@@ -2,18 +2,59 @@
 #include <stdlib.h>
 
 /**
- * main - check the code.
+ * get_coins - computes minimum number of coins.
  *
+ * @cents: amount of money
+ *
+ * Return: number of coins.
+ */
+int get_coins(int cents)
+{
+	int coins = 0;
+
+	while (cents > 0)
+	{
+		coins++;
+		if (cents - 25 >= 0)
+		{
+			cents -= 25;
+			continue;
+		}
+
+		if (cents - 10 >= 0)
+		{
+			cents -= 10;
+			continue;
+		}
+
+		if (cents - 5 >= 0)
+		{
+			cents -= 5;
+			continue;
+		}
+
+		if (cents - 2 >= 0)
+		{
+			cents -= 2;
+			continue;
+		}
+		cents--;
+	}
+
+	return (coins);
+}
+
+/**
+ * main - check the code.
  * @argc: argument count.
  * @argv: argument values.
  *
- * Return: If the number of arguments passed is not 1, print Error and return 1.
- * If the number passed as argument is negative, print 0.
+ * Return: 0 on success, 1 on error.
  */
 
 int main(int argc, char *argv[])
 {
-	int cents, coins = 0;
+	int cents;
 
 	if (argc != 2)
 	{
@@ -22,37 +63,11 @@ int main(int argc, char *argv[])
 	}
 
 	cents = atoi(argv[1]);
-
-	while (cents > 0)
+	if (cents < 0)
 	{
-		coins++;
-		if ((cents - 25) >= 0)
-		{
-			cents -= 25;
-			continue;
-		}
-		if ((cents - 10) >= 0)
-		{
-			cents -= 10;
-			continue;
-		}
-		if ((cents - 5) >= 0)
-		{
-			cents -= 5;
-			continue;
-		}
-		if ((cents - 2) >= 0)
-		{
-			cents -= 2;
-			continue;
-		}
-		if ((cents - 1) >= 0)
-		{
-			cents -= 1;
-			continue;
-		}
-		cents--;
+		printf("0\n");
+		return (0);
 	}
-	printf("%d\n", coins);
+	printf("%d\n", get_coins(cents));
 	return (0);
 }

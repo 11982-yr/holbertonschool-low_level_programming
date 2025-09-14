@@ -6,7 +6,7 @@
  *
  * @str: the string to be copied.
  *
- * Return: NULL if str = NULL, 
+ * Return: NULL if str = NULL,
  * or a pointer to the duplicated string on success,
  * or NULL  if insufficient memory was available.
  */

@@ -71,7 +71,7 @@ char *iterate_zeroes(char *str)
  *
  * @c: the character to be converted.
  *
- * Return: a pointer to the converted character.
+ * Return: the integer value of the digit.
  */
 int get_digit(char c)
 {
@@ -79,7 +79,7 @@ int get_digit(char c)
 
 	if (digit < 0 || digit > 9)
 	{
-		printf("\Error");
+		printf("Error\n");
 		exit(98);
 	}
 	return (digit);
@@ -132,7 +132,7 @@ void get_prod(char *prod, char *mult, int digit, int zeroes)
 	}
 	if (tens)
 	{
-		*prod = (tens % 10) + '0':;
+		*prod = (tens % 10) + '0';
 	}
 }
 
@@ -148,27 +148,17 @@ void add_nums(char *final_prod, char *next_prod, int next_len)
 {
 	int num, tens = 0;
 
-	while (*(final_prod) + 1)
+	while (*(final_prod) != '\0')
 		final_prod++;
+	final_prod--;
 
-	while (*(next_prod) + 1)
+	while (*(next_prod) != '\0')
 		next_prod++;
+	next_prod--;
 
-	for (; *final_prod != 'x'; final_prod--)
+	while (next_len-- >= 0 && *next_prod != 'x')
 	{
-		num = (*final_prod - '0') + (*next_prod - '0');
-		num += tens;
-		*final_prod = (num % 10) + '0';
-		tens = num / 10;
-
-		next_prod--;
-		next_len--;
-	}
-
-	for (; next_len >= 0 && *next_prod != 'x'; next_len--)
-	{
-		num = (*next_prod - '0');
-		num += tens;
+		num = (*final_prod - '0') + (*next_prod - '0') + tens;
 		*final_prod = (num % 10) + '0';
 		tens = num / 10;
 
@@ -176,10 +166,16 @@ void add_nums(char *final_prod, char *next_prod, int next_len)
 		next_prod--;
 	}
 
-	if (tens)
+	while (tens && *final_prod != 'x')
 	{
-		*final_prod = (tens % 10) + '0';
+		num = (*final_prod - '0') + tens;
+		*final_prod = (num % 10) + '0';
+		tens = num / 10;
+		final_prod--;
 	}
+
+	if (tens)
+		*final_prod = (tens % 10) + '0';
 }
 
 /**
@@ -202,3 +198,36 @@ int main(int argc, char *argv[])
 		exit(98);
 	}
 
+	if (*(argv[1]) == '0')
+		argv[1] = iterate_zeroes(argv[1]);
+	if (*(argv[2]) == '0')
+		argv[2] = iterate_zeroes(argv[2]);
+
+	if (*(argv[1]) == '\0' || *(argv[2]) == '\0')
+	{
+		printf("0\n");
+		return (0);
+	}
+
+	size = find_len(argv[1]) + find_len(argv[2]);
+	final_prod = create_xarray(size + 1);
+	next_prod = create_xarray(size + 1);
+
+	for (index = find_len(argv[2]) - 1; index >= 0; index--)
+	{
+		digit = get_digit(*(argv[2] + index));
+		get_prod(next_prod, argv[1], digit, zeroes++);
+		add_nums(final_prod, next_prod, size - 1);
+	}
+
+	for (index = 0; final_prod[index]; index++)
+	{
+		if (final_prod[index] != 'x')
+			putchar(final_prod[index]);
+	}
+	putchar('\n');
+
+	free(next_prod);
+	free(final_prod);
+	return (0);
+}

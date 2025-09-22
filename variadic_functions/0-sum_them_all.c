@@ -7,7 +7,7 @@
  * @n: the sum to be returned.
  * @...: the parameters.
  *
- * Return: If n == 0, return 0. 
+ * Return: If n == 0, return 0.
  * Otherwise, return the sum.
  */
 

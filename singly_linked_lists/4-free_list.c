@@ -1,10 +1,13 @@
 #include "lists.h"
-#include <string.h>
+#include <stdlib.h>
 
 /**
- * free_list: frees a list_t list
+ * free_list - Frees a list_t list.
  *
  * @head: the head of the list.
+ *
+ * Description: frees all nodes of a linked list_t list,
+ * including the strings in each node.
  */
 
 void free_list(list_t *head)
